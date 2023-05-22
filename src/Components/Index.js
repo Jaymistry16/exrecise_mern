@@ -6,44 +6,24 @@ export const Index = () => {
   const [count, setCount] = useState(10);
   const onSubmit = () => {};
   const HighlightTemplate = () => {
-    let extraChars = inputValue?.slice(count, inputValue.length);
     return (
       <div>
-        {inputValue?.length > count ? (
-          <>
-            <p
-              style={{
-                color: "green",
-              }}
-            >
-              {inputValue?.slice(0, count)}
-            </p>
-            <p>
-              <span
-                style={{
-                  color: "green",
-                }}
-              >
-                {inputValue?.slice(0, count)}
-              </span>
-              <span
-                style={{
-                  color: "red",
-                }}
-              >
-                {inputValue?.slice(count, inputValue?.length)}
-              </span>
-            </p>
-          </>
-        ) : (
-          <p
+        <p>
+          <span
             style={{
               color: "green",
             }}
           >
-            {inputValue}
-          </p>
-        )}
+            {inputValue?.slice(0, count)}
+          </span>
+          <span
+            style={{
+              color: "red",
+            }}
+          >
+            {inputValue?.slice(count, inputValue?.length)}
+          </span>
+        </p>
       </div>
     );
   };
@@ -60,7 +40,11 @@ export const Index = () => {
           rows={5}
         />
         <HighlightTemplate />
-        <button className="btn" onClick={onSubmit}>
+        <button
+          disabled={inputValue?.length > count}
+          className="btn"
+          onClick={onSubmit}
+        >
           Submit
         </button>
         <div>
